@@ -3,6 +3,7 @@ package com.sparta.springcore.service;
 import com.sparta.springcore.dto.ProductMypriceRequestDto;
 import com.sparta.springcore.dto.ProductRequestDto;
 import com.sparta.springcore.model.Product;
+import com.sparta.springcore.repository.FolderRepository;
 import com.sparta.springcore.repository.ProductRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,9 @@ import static org.mockito.Mockito.when;
 class ProductServiceTest {
     @Mock
     ProductRepository productRepository;
+
+    @Mock
+    FolderRepository folderRepository;
 
     @Test
     @DisplayName("updateProduct() 에 의해 관심 가격이 3만원으로 변경되는지 확인")
@@ -43,7 +47,7 @@ class ProductServiceTest {
 
         Product product = new Product(requestProductDto, userId);
 
-        ProductService productService = new ProductService(productRepository);
+        ProductService productService = new ProductService(productRepository, folderRepository);
         when(productRepository.findById(productId))
                 .thenReturn(Optional.of(product));
 
@@ -75,7 +79,7 @@ class ProductServiceTest {
 
         Product product = new Product(requestProductDto, userId);
 
-        ProductService productService = new ProductService(productRepository);
+        ProductService productService = new ProductService(productRepository, folderRepository);
         when(productRepository.findById(productId))
                 .thenReturn(Optional.of(product));
 

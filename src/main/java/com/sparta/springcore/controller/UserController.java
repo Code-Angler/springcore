@@ -1,6 +1,7 @@
 package com.sparta.springcore.controller;
 
 import com.sparta.springcore.dto.SignupRequestDto;
+
 import com.sparta.springcore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,10 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
+
 @Controller
 public class UserController {
 
     private final UserService userService;
+
 
     @Autowired
     public UserController(UserService userService) {
@@ -42,10 +46,13 @@ public class UserController {
         userService.registerUser(requestDto);
         return "redirect:/";
     }
+
+
     @GetMapping("/user/forbidden")
     public String forbidden() {
         return "forbidden";
     }
+
     @GetMapping("/user/kakao/callback")
     public String kakaoLogin(String code) {
         // authorizedCode: 카카오 서버로부터 받은 인가 코드

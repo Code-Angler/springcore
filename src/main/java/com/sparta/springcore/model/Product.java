@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Setter
 @Getter // get 함수를 일괄적으로 만들어줍니다.
@@ -37,6 +38,9 @@ public class Product extends Timestamped{
 
     @Column(nullable = false)
     private Long userId;
+
+    @ManyToMany
+    private List<Folder> folderList;
 
     public Product(ProductRequestDto requestDto, Long userId) {
         // 입력값 Validation
@@ -72,6 +76,8 @@ public class Product extends Timestamped{
     public void updateMyprice(int myPrice) {
         this.myprice =myPrice;
     }
+
+    public void addFolder(Folder folder) {
+        this.folderList.add(folder);
+    }
 }
-
-
